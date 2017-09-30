@@ -7,6 +7,7 @@ import time
 
 # HOSTS_URL = 'https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts'
 HOSTS_URL = 'https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts'
+IPV6_HOSTS_URL = 'https://raw.githubusercontent.com/lennylxx/ipv6-hosts/master/hosts'
 
 LOCAL_PATH = os.environ['windir'] + '\\System32\\drivers\\etc\\hosts'
 
