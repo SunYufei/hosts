@@ -5,7 +5,8 @@ import os
 import shutil
 import time
 
-HOSTS_URL = 'https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts'
+# HOSTS_URL = 'https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts'
+HOSTS_URL = 'https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts'
 
 LOCAL_PATH = os.environ['windir'] + '\\System32\\drivers\\etc\\hosts'
 
