@@ -26,8 +26,8 @@
    'c:\\develop\\python3\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
    'PYSOURCE'),
   ('update', 'C:\\Documents\\Project\\hosts\\update.py', 'PYSOURCE'),
-  ('VCRUNTIME140.dll', 'c:\\develop\\python3\\VCRUNTIME140.dll', 'BINARY'),
   ('python36.dll', 'c:\\develop\\python3\\python36.dll', 'BINARY'),
+  ('VCRUNTIME140.dll', 'c:\\develop\\python3\\VCRUNTIME140.dll', 'BINARY'),
   ('_ssl', 'c:\\develop\\python3\\DLLs\\_ssl.pyd', 'EXTENSION'),
   ('unicodedata', 'c:\\develop\\python3\\DLLs\\unicodedata.pyd', 'EXTENSION'),
   ('pyexpat', 'c:\\develop\\python3\\DLLs\\pyexpat.pyd', 'EXTENSION'),
@@ -46,7 +46,7 @@
  [],
  False,
  False,
- 1506762826,
+ 1506947558,
  [('run.exe',
    'c:\\develop\\python3\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])
