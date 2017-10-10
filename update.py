@@ -1,33 +1,46 @@
-# Author: Sun Yufei
-
+"""
+    Date: 2017/10/10
+"""
+import re
 import urllib.request
 import os
+import zipfile
 import shutil
 import time
 
-# HOSTS_URL = 'https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts'
-HOSTS_URL = 'https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts'
-
+HTML = 'https://laod.cn/hosts/2017-google-hosts.html'
 LOCAL_PATH = os.environ['windir'] + '\\System32\\drivers\\etc\\hosts'
+DOWN_PAGE = 'https://iiio.io/download/'
 
 
-def main():
-    '''Main Function'''
+def download_file():
+    """ Download Hosts File """
+    req = urllib.request.urlopen(DOWN_PAGE)
+    html = req.read().decode('UTF-8')
+    dates = re.findall(re.compile(r'<a href=".*">([0-9]*/)</a>'), html)
+    date = dates[len(dates) - 1]
+    req = urllib.request.urlopen(DOWN_PAGE + date)
+    html = req.read().decode('UTF-8')
+    file_link = re.search(re.compile(r'<a href="(.*)">Windows系列跟苹果系列.zip</a>'), html).group(1)
+    urllib.request.urlretrieve(DOWN_PAGE + date + file_link, 'hosts.zip')
 
-    print('欢迎使用Google Hosts更新工具')
-    print('Gitee: https://gitee.com/sunovo/hosts')
-    print('GitHub: https://github.com/sunyufei/hosts')
 
-    # Download hosts file
-    if(os.path.exists('hosts')):
-        os.remove('hosts')
+def get_password():
+    """ Get zip file password """
+    req = urllib.request.urlopen(HTML)
+    html = req.read().decode('UTF-8')
+    return re.search(re.compile(r'解压密码：(.*)</span>'), html).group(1)
+
+
+def move_file():
+    """ Replace current hosts file """
+    zip_file = zipfile.ZipFile('hosts.zip')
+    zip_file.extractall(pwd=bytes(get_password(), encoding='UTF-8'))
+    zip_file.close()
+    os.remove('hosts.zip')
     try:
-        urllib.request.urlretrieve(HOSTS_URL, 'hosts')
-    except Exception:
-        print('网络连接失败')
-    # Backup old hosts file
-    try:
-        if(os.path.exists(LOCAL_PATH + '.bak')):
+        # Backup hosts file
+        if os.path.exists(LOCAL_PATH + '.bak'):
             os.remove(LOCAL_PATH)
         else:
             shutil.copyfile(LOCAL_PATH, LOCAL_PATH + '.bak')
@@ -38,6 +51,11 @@ def main():
     except Exception:
         print('请使用管理员权限运行')
 
+
+def main():
+    """ Main Function """
+    download_file()
+    move_file()
     time.sleep(2)
 
 
