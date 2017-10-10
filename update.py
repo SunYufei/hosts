@@ -41,7 +41,7 @@ def move_file():
     try:
         # Backup hosts file
         if os.path.exists(LOCAL_PATH + '.bak'):
-            os.remove(LOCAL_PATH)
+            pass
         else:
             shutil.copyfile(LOCAL_PATH, LOCAL_PATH + '.bak')
         # Move new file to system
