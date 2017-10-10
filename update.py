@@ -1,12 +1,12 @@
 """
     Date: 2017/10/10
 """
-import re
-import urllib.request
 import os
-import zipfile
+import re
 import shutil
 import time
+import urllib.request
+import zipfile
 
 HTML = 'https://laod.cn/hosts/2017-google-hosts.html'
 LOCAL_PATH = os.environ['windir'] + '\\System32\\drivers\\etc\\hosts'
